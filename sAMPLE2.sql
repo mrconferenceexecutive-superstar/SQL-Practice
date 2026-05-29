@@ -85,3 +85,112 @@ INSERT INTO Customers VALUES
 
 Select * from customers;
 Select * from employees;
+
+CREATE TABLE Sales (
+    SaleID INT PRIMARY KEY,
+    CustomerID INT,
+    ProductName VARCHAR(100),
+    Category VARCHAR(50),
+    Quantity INT,
+    Price DECIMAL(10,2),
+    SaleDate DATE
+);
+
+INSERT INTO Sales VALUES
+(101, 1, 'Laptop', 'Electronics', 1, 55000, '2025-01-01'),
+(102, 2, 'Mobile', 'Electronics', 2, 20000, '2025-01-02'),
+(103, 3, 'Tablet', 'Electronics', 1, 18000, '2025-01-03'),
+(104, 4, 'Printer', 'Accessories', 1, 7000, '2025-01-04'),
+(105, 5, 'Desk Chair', 'Furniture', 2, 5000, '2025-01-05'),
+(106, 6, 'Monitor', 'Electronics', 1, 15000, '2025-01-06'),
+(107, 7, 'Keyboard', 'Accessories', 3, 1200, '2025-01-07'),
+(108, 8, 'Mouse', 'Accessories', 2, 800, '2025-01-08'),
+(109, 9, 'Laptop', 'Electronics', 1, 65000, '2025-01-09'),
+(110, 10, 'Headphones', 'Accessories', 2, 2500, '2025-01-10'),
+
+(111, 11, 'Smart Watch', 'Electronics', 1, 12000, '2025-01-11'),
+(112, 12, 'Air Conditioner', 'Home Appliances', 1, 40000, '2025-01-12'),
+(113, 13, 'Refrigerator', 'Home Appliances', 1, 35000, '2025-01-13'),
+(114, 14, 'Washing Machine', 'Home Appliances', 1, 28000, '2025-01-14'),
+(115, 15, 'Dining Table', 'Furniture', 1, 22000, '2025-01-15'),
+(116, 16, 'Sofa', 'Furniture', 1, 45000, '2025-01-16'),
+(117, 17, 'Microwave Oven', 'Home Appliances', 1, 10000, '2025-01-17'),
+(118, 18, 'Ceiling Fan', 'Home Appliances', 2, 3000, '2025-01-18'),
+(119, 19, 'Gaming Laptop', 'Electronics', 1, 85000, '2025-01-19'),
+(120, 20, 'Projector', 'Electronics', 1, 25000, '2025-01-20'),
+
+(121, 21, 'Office Chair', 'Furniture', 2, 7000, '2025-01-21'),
+(122, 22, 'Bookshelf', 'Furniture', 1, 9000, '2025-01-22'),
+(123, 23, 'Pen Drive', 'Accessories', 5, 700, '2025-01-23'),
+(124, 24, 'External Hard Disk', 'Accessories', 2, 6000, '2025-01-24'),
+(125, 25, 'Smart TV', 'Electronics', 1, 55000, '2025-01-25'),
+(126, 26, 'Bluetooth Speaker', 'Electronics', 2, 3500, '2025-01-26'),
+(127, 27, 'Camera', 'Electronics', 1, 45000, '2025-01-27'),
+(128, 28, 'Tripod', 'Accessories', 2, 1500, '2025-01-28'),
+(129, 29, 'Router', 'Electronics', 1, 2500, '2025-01-29'),
+(130, 30, 'UPS', 'Electronics', 1, 5500, '2025-01-30'),
+
+(131, 31, 'Power Bank', 'Accessories', 3, 1800, '2025-02-01'),
+(132, 32, 'Water Purifier', 'Home Appliances', 1, 14000, '2025-02-02'),
+(133, 33, 'Iron Box', 'Home Appliances', 2, 2000, '2025-02-03'),
+(134, 34, 'Mixer Grinder', 'Home Appliances', 1, 5000, '2025-02-04'),
+(135, 35, 'Coffee Table', 'Furniture', 1, 6500, '2025-02-05'),
+(136, 36, 'Wardrobe', 'Furniture', 1, 30000, '2025-02-06'),
+(137, 37, 'DSLR Lens', 'Electronics', 1, 32000, '2025-02-07'),
+(138, 38, 'Graphics Card', 'Electronics', 1, 70000, '2025-02-08'),
+(139, 39, 'CPU Cabinet', 'Electronics', 1, 8000, '2025-02-09'),
+(140, 40, 'RAM 16GB', 'Electronics', 2, 4500, '2025-02-10'),
+
+(141, 41, 'SSD 1TB', 'Electronics', 1, 9000, '2025-02-11'),
+(142, 42, 'Webcam', 'Accessories', 2, 2200, '2025-02-12'),
+(143, 43, 'Office Desk', 'Furniture', 1, 15000, '2025-02-13'),
+(144, 44, 'Tablet', 'Electronics', 1, 22000, '2025-02-14'),
+(145, 45, 'Smartphone', 'Electronics', 1, 30000, '2025-02-15'),
+(146, 46, 'Earbuds', 'Accessories', 2, 3500, '2025-02-16'),
+(147, 47, 'Air Fryer', 'Home Appliances', 1, 11000, '2025-02-17'),
+(148, 48, 'Vacuum Cleaner', 'Home Appliances', 1, 16000, '2025-02-18'),
+(149, 49, 'Dining Chair', 'Furniture', 4, 2500, '2025-02-19'),
+(150, 50, 'MacBook', 'Electronics', 1, 120000, '2025-02-20');
+
+SELECT CustomerID,
+       CustomerName,
+       City
+FROM Customers
+WHERE City = 'Chennai';
+
+SELECT ProductName,
+       Price
+FROM Sales
+ORDER BY Price DESC;
+
+SELECT DISTINCT City , CustomerName
+FROM Customers;
+
+SELECT *
+FROM Sales
+WHERE Price > 50000
+ORDER BY Price DESC;
+
+Select Customerid ,Category , Price ,Rnk from (Select CustomerID , Category ,Price , dense_rank() Over ( order by price Desc) as Rnk From Sales) r where rnk =10
+;
+
+SELECT COUNT(*) AS TotalCustomers
+FROM Customers;
+
+SELECT *
+FROM Customers
+WHERE City = 'Chennai'
+   OR City = 'Mumbai' or city = 'Madurai';
+   
+   SELECT Count(*) as Defined
+FROM Customers
+WHERE city in('chennai','Madurai','Mumbai');
+
+SELECT Count(*) as Un_Defined
+FROM Customers
+WHERE City NOT IN ('Chennai', 'Mumbai');
+
+SELECT *
+FROM Customers
+WHERE City NOT IN ('Chennai', 'Mumbai')  order by Customername Desc,City Asc;
+
