@@ -7,4 +7,6 @@ Select * from customers;
 Select * from employees;
 Select * from Sales;
 
+Select * from world;
+
 
